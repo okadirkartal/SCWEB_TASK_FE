@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import  { ProductService} from '../Services/ProductService'; 
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { of } from 'rxjs';
@@ -20,7 +20,8 @@ selectedUnitType:number=1;
 
   constructor(private route:ActivatedRoute,
     private productService:ProductService,
-    private formBuilder:FormBuilder) {
+    private formBuilder:FormBuilder,
+    private router: Router) {
 
       this.createForm();
      
@@ -32,9 +33,9 @@ selectedUnitType:number=1;
 
 getUnitTypes(){
 return [
-  { id: '1', value: 'Weight'},
-  { id: '2', value: 'Size'},
-  { id: '3', value: 'Dimension'}
+  { id: '1', value: 'Book'},
+  { id: '2', value: 'DVD-disc'},
+  { id: '3', value: 'Furniture'}
      ];
 }
 
@@ -50,7 +51,7 @@ return [
   model.price=this.productForm.controls.price.value;
   model.unitTypeId=this.selectedUnitType;
 
-    
+  
       if(this.selectedUnitType==1){
         this.productForm.controls.size.patchValue(null);
         this.productForm.controls.dLength.patchValue(null);
@@ -77,10 +78,14 @@ return [
      
        this.productService.addProduct(model)
     .subscribe(
-      data=> {
-        result=data;
+      result=> {
+        result=result;
       }); 
       console.log(result);
+      if(result==true) {
+        alert("Product added succssfully");
+        this.router.navigate(["../product/list"]);
+      }
   }
 
   createForm() {
@@ -97,6 +102,10 @@ return [
         dWidth:0,
         dLength:0
     });
+  }
+
+  gotoProductList(){
+    this.router.navigate(['../product/list']);
   }
 
 }

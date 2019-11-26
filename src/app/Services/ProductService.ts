@@ -23,7 +23,7 @@ export class ProductService {
       }
 
     addProduct(model:ProductAddViewModel):Observable<boolean>{
-        return this.http.post<boolean>(this.serviceUrl+'addProduct.php',model)
+        return this.http.post<boolean>(this.serviceUrl+'addProduct.php',JSON.stringify(model))
         .pipe(tap(data=>console.log('All: '+JSON.stringify(data))),
         catchError(this.handleError)
         );

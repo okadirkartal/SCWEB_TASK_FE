@@ -54,7 +54,7 @@ result:boolean;
       error=>this.errorMessage=<any>error
     ); 
    
-   this.gotoProductList(); 
+   this.getProducts();
   }
 
   gotoProductForm(){
