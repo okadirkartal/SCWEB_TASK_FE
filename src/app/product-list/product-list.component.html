@@ -7,11 +7,10 @@
         </div>
     </div>
     <hr  />
-    <div fxLayout="row"  column="4"  fxLayoutGap="2%"  [style.margin-top]="'20px'"  [style.margin-left]="'20px'" [style.margin-right]="'20px'">
-    <div  *ngFor="let item of products" style="width: 50%; height:100%; border:thin solid black !important;">
-      <mat-card class="tp-card">
+    <div  *ngFor="let item of products;let i = index" fxLayout="row"    fxLayoutGap="2%"  [style.margin-top]="'20px'"  [style.margin-left]="'20px'" [style.margin-right]="'20px'">
+      <mat-card   class="tp-card"  style="width: 25%; height:100%; border:thin solid black !important;">
         <mat-card-header>
-           <mat-card-title>      
+            <mat-card-title>   
            <input type="checkbox"  name="mycheckboxes" class="myCheck"  id="chk{{item.id}}" value="{{item.id}}">
            </mat-card-title>
          </mat-card-header>
@@ -26,7 +25,7 @@
             : {{item.unitValue}}  {{item.unitType}}
         </p>
         </mat-card-content>
-      </mat-card>
-    </div>
+      </mat-card> 
+     <!----<p *ngIf="((i+1)%5)==0">{{((i+1))}}<br /></p>  -->
     </div>
 </div>

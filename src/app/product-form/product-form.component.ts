@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import  { ProductService} from '../Services/ProductService'; 
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, AbstractControl } from '@angular/forms';
 import { of } from 'rxjs';
 import { ProductAddViewModel } from '../models/ProductAddViewModel';
 
@@ -53,30 +53,26 @@ return [
 
   
       if(this.selectedUnitType==1){
-        this.productForm.controls.size.patchValue(null);
-        this.productForm.controls.dLength.patchValue(null);
-        this.productForm.controls.dWidth.patchValue(null);
-        this.productForm.controls.dHeight.patchValue(null);
-
+        this.setFormControlToNull(this.productForm.controls.size,  this.productForm.controls.dLength,
+        this.productForm.controls.dWidth, this.productForm.controls.dHeight);
+        
         model.unitValue=this.productForm.controls.weight.value;
 
        } else if(this.selectedUnitType==2) {
-        this.productForm.controls.weight.patchValue(null);
-        this.productForm.controls.dLength.patchValue(null);
-        this.productForm.controls.dWidth.patchValue(null);
-        this.productForm.controls.dHeight.patchValue(null);
+          this.setFormControlToNull(this.productForm.controls.weight,this.productForm.controls.dLength,
+          this.productForm.controls.dWidth,
+          this.productForm.controls.dHeight);
 
         model.unitValue=this.productForm.controls.size.value;
      } else {
-        this.productForm.controls.size.patchValue(null);
-        this.productForm.controls.weight.patchValue(null);
+         this.setFormControlToNull(this.productForm.controls.size,this.productForm.controls.weight);
 
         model.unitValue=this.productForm.controls.dHeight.value+"x"+ this.productForm.controls.dWidth.value+"x"+ this.productForm.controls.dLength.value;
     }
 
         console.log(model);  
      
-       this.productService.addProduct(model)
+     this.productService.addProduct(model)
     .subscribe(
       result=> {
         result=result;
@@ -86,6 +82,12 @@ return [
         alert("Product added succssfully");
         this.router.navigate(["../product/list"]);
       }
+  }
+
+  setFormControlToNull(...params:AbstractControl[]) {
+    params.forEach(element => {
+      element.patchValue(null);
+    });
   }
 
   createForm() {

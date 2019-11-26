@@ -11,8 +11,7 @@ import {Router} from "@angular/router";
 
 export class ProductListComponent implements OnInit {
 errorMessage:string;
-products : ProductListViewModel[];
-checkboxes: boolean[];
+products : ProductListViewModel[]; 
 result:boolean;
 
   constructor(private productService : ProductService,private router: Router) { }
@@ -30,24 +29,32 @@ result:boolean;
     );
   }
 
-  delete() {
-    let selectedIds='';
-    let checkedBoxes = document.querySelectorAll('input[name=mycheckboxes]:checked'); 
-
-    if (checkedBoxes.length==0) {
-      alert("No rows selected.");
-      return;
-    } 
-
-    for(var i=0;i< checkedBoxes.length;i++){
-      selectedIds += checkedBoxes[i].value;
-        if(i!=checkedBoxes.length-1)
-          selectedIds+=',';
-      }
-       
-      console.log(selectedIds);
+  getDeletableRecords() {
   
-      this.productService.deleteSelectedProducts(selectedIds).subscribe(
+  let checkedBoxes = document.querySelectorAll('input[name=mycheckboxes]:checked'); 
+
+  if (checkedBoxes.length==0) {
+    alert("No rows selected.");
+    return null;
+  } 
+  let selectedIds='';
+  
+  for(var i=0;i< checkedBoxes.length;i++){
+    selectedIds += checkedBoxes[i].value;
+      if(i!=checkedBoxes.length-1)
+        selectedIds+=',';
+    }
+    return selectedIds;
+  }
+
+  delete() {
+   
+     let deletableRecords=this.getDeletableRecords();
+     if(deletableRecords==null)
+     return;
+      console.log(deletableRecords);
+  
+      this.productService.deleteSelectedProducts(deletableRecords).subscribe(
       result=> {
         this.result=result;
       },
