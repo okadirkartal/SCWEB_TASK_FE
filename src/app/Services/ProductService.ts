@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient,HttpResponse, HttpErrorResponse} from '@angular/common/http';
 import { throwError,Observable, of} from 'rxjs';
 import { catchError,tap} from 'rxjs/operators';
-import { ProductViewModel} from '../models/ProductViewModel';  
+import { ProductListViewModel} from '../models/ProductListViewModel';  
+import { ProductAddViewModel } from '../models/ProductAddViewModel';
 
 
 @Injectable({
@@ -14,22 +15,15 @@ export class ProductService {
 
     constructor(private http:HttpClient){}
 
-    getProducts():Observable<ProductViewModel[]>{
-      return this.http.get<ProductViewModel[]>(this.serviceUrl+'getProducts.php')
+    getProducts():Observable<ProductListViewModel[]>{
+      return this.http.get<ProductListViewModel[]>(this.serviceUrl+'getProducts.php')
         .pipe(tap(data=>console.log('All: '+JSON.stringify(data))),
         catchError(this.handleError)
         );
       }
 
-    getProduct(sku:string):Observable<ProductViewModel>{
-        return this.http.get<ProductViewModel>(this.serviceUrl+'getProducts.php')
-        .pipe(tap(data=>console.log('All: '+JSON.stringify(data))),
-        catchError(this.handleError)
-        );
-    }
-
-    addOrUpdateProduct(model:ProductViewModel):Observable<boolean>{
-        return this.http.post<boolean>(this.serviceUrl+'addOrUpdateProduct',model)
+    addProduct(model:ProductAddViewModel):Observable<boolean>{
+        return this.http.post<boolean>(this.serviceUrl+'addProduct.php',model)
         .pipe(tap(data=>console.log('All: '+JSON.stringify(data))),
         catchError(this.handleError)
         );

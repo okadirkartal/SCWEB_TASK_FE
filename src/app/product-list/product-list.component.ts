@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../Services/ProductService';
-import { ProductViewModel } from '../models/ProductViewModel';
+import { ProductListViewModel } from '../models/ProductListViewModel';
 import {Router} from "@angular/router";
 
 @Component({
@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
 
 export class ProductListComponent implements OnInit {
 errorMessage:string;
-products : ProductViewModel[];
+products : ProductListViewModel[];
 checkboxes: boolean[];
 result:boolean;
 

@@ -8,37 +8,53 @@
     <hr  />
 </div>
 
-<div class="card">
+<mat-card class="tp-card">
+    <mat-card-content>
  
-  
-  <div class="card-body">
-      <div class="table-responsive">
-    
-        <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-            <div formGroupName="productData">
-    
-          <table class="table">
-           
-            <tbody>
-              <tr>
-              <td>SKU</td>
-                <td><input type="text"   width=20 class="form-control" id="txtSKU"  /></td>
-              </tr>
-              <tr>
-                <td> Name</td>
-                <td><input type="text"   width=20 class="form-control" id="txtName"  /></td>        
-              </tr>
-              <tr>
-                  <td>Price</td>
-                  <td><input type="text"   width=20 class="form-control" id="txtPrice" /></td>
-              </tr>
-              
-      
-            </tbody>
-          </table>
-            </div>
-        </form>
-     
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="text-center border border-light p-5">
+        <div>
+          <label for="sku">SKU</label> 
+         <input type="text"    class="form-control mb-4" id="sku" formControlName="sku" maxlength="10"  required/>
+      <p></p>
+         <label for="name">Name</label>
+          <input type="text"    class="form-control" id="name"  formControlName="name" maxlength="20" required/>       
+          <p></p> 
+          <label for="price">Price</label>
+             <input type="number"   class="form-control" id="price" formControlName="price" maxlength="10" required/>
+             <p></p>
+             <label for="unitTypes">Type switcher</label>
+             <select formControlName="unitTypes" id="unitTypes" [(ngModel)]="selectedUnitType">
+                <option *ngFor="let item of unitTypes; let i = index" [value]="unitTypes[i].id">
+                  {{unitTypes[i].value}}
+                </option>
+              </select>
+<p></p>
+              <div id="divSize"  *ngIf="selectedUnitType == 2">
+                  <span>Please provide size  in mb format</span><p></p>
+                <label for="size">Size</label>
+                <input type="number" class="form-control" id="size" formControlName="size" maxlength="10"/>&nbsp;mb
               </div>
+
+              <div id="divWeight" *ngIf="selectedUnitType == 1">
+                  <span>Please provide weight  in kg format</span><p></p>
+                  <label for="weight">Weight</label>
+                  <input type="number" class="form-control" id="weight" formControlName="weight" maxlength="10" />&nbsp;kg
+              </div>
+              
+              <div id="divDimension" *ngIf="selectedUnitType == 3" >
+                <span>Please provide dimension  in HxWxL format</span><p></p>
+                  <label for="dHeight">Height</label>
+                  <input type="number" class="form-control" id="dHeight" formControlName="dHeight"maxlength="10" pattern="[0-9]*"  />
+                  <p></p>
+                  <label for="dWidth">Width</label>
+                  <input type="number" class="form-control" id="dWidth" formControlName="dWidth" maxlength="10" pattern="[0-9]*"/>
+                  <p></p>
+                  <label for="dLength">Length</label>
+                  <input type="number" class="form-control" id="dLength" formControlName="dLength" maxlength="10" pattern="[0-9]*"/>
+                </div>
+                
         </div>
-  </div>
+    </form>
+ 
+  </mat-card-content>
+</mat-card>
