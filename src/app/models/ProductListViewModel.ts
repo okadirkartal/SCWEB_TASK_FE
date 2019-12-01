@@ -1,4 +1,5 @@
 export interface ProductListViewModel {
+    id:number;
     sku:string;
     name:string;
     price:number;

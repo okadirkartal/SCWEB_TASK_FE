@@ -31,7 +31,7 @@ result:boolean;
 
   getDeletableRecords() {
   
-  let checkedBoxes = document.querySelectorAll('input[name=mycheckboxes]:checked'); 
+  var checkedBoxes = document.querySelectorAll('input[name=mycheckboxes]:checked'); 
 
   if (checkedBoxes.length==0) {
     alert("No rows selected.");
@@ -50,9 +50,10 @@ result:boolean;
   delete() {
    
      let deletableRecords=this.getDeletableRecords();
-     if(deletableRecords==null)
-     return;
-      console.log(deletableRecords);
+     
+     if(deletableRecords==null) return;
+     
+     console.log(deletableRecords);
   
       this.productService.deleteSelectedProducts(deletableRecords).subscribe(
       result=> {
@@ -66,9 +67,5 @@ result:boolean;
 
   gotoProductForm(){
     this.router.navigate(['../product/add']);
-  }
-
-  gotoProductList(){
-    this.router.navigate(['../product/list']);
-  }
+  } 
 }

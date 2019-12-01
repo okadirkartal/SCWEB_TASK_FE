@@ -1,3 +1,7 @@
 .cardDiv {
     width: 100%; height:100%; border:thin solid black !important;
 }
+
+.formTable tr {
+ height:35px;
+}
