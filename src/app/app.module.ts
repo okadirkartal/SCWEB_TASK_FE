@@ -12,6 +12,7 @@ import {MatCardModule, MatButtonModule,MatCheckboxModule} from '@angular/materia
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorMessageComponent } from './error-message/error-message.component';
+import { ProductsComponent } from './products/products.component';
 
 @NgModule({
   exports: [
@@ -30,6 +31,7 @@ export class MaterialModule {}
   declarations: [
     AppComponent,
     ErrorMessageComponent,
+    ProductsComponent,
     ProductFormComponent,
     ProductListComponent
   ],

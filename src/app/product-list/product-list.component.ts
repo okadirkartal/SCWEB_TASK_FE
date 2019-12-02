@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
 
 export class ProductListComponent implements OnInit {
 errorMessage:string;
-products : ProductListViewModel[]; 
+products : ProductListViewModel[]=[]; 
 result:boolean;
 
   constructor(private productService : ProductService,private router: Router) { }

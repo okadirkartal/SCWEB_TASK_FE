@@ -8,11 +8,9 @@
   </div>
   <hr />
 </div>
-<!-- <div id="divMessage" *ngIf="returnResult?.message?.length>=0">
-  <span *ngFor="let item of returnResult.message" [(ngModel)]="item">{{item}}<br /></span>
-</div> -->
 
 <app-error-message [(messages)]="returnResult.message"></app-error-message>
+
 <mat-card class="example-card">
   <mat-card-content>
 
@@ -85,9 +83,6 @@
               pattern="[0-9]*" /></td>
         </tr>
       </table>
-
-
     </form>
-
   </mat-card-content>
 </mat-card>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient,HttpResponse, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { throwError,Observable, of} from 'rxjs';
 import { catchError,tap} from 'rxjs/operators';
 import { ProductListViewModel} from '../models/ProductListViewModel';  

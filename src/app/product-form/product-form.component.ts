@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import  { ProductService} from '../Services/ProductService'; 
 import { FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
@@ -80,11 +80,7 @@ return [
           alert("Product added succssfully");
           this.router.navigate(["../product/list"]);
         } 
-      }); 
-    
-      
-    
-       
+      });      
   }
 
   setFormControlToNull(...params:AbstractControl[]) {
@@ -112,5 +108,4 @@ return [
   gotoProductList(){
     this.router.navigate(['../product/list']);
   }
-
 }
