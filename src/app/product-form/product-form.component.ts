@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import  { ProductService} from '../Services/ProductService'; 
-import { FormGroup, FormBuilder, FormControl, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 import { of } from 'rxjs';
 import { ProductAddViewModel } from '../models/ProductAddViewModel';
-import { ReturnResult } from '../models/ReturnResult';
+import { ReturnResult } from '../models/ReturnResult'; 
 
 @Component({
   selector: 'app-product-form',
@@ -18,8 +18,7 @@ export class ProductFormComponent implements OnInit {
 productForm:FormGroup;
 unitTypes=[];
 selectedUnitType:number=1;
-@Input()
-returnResult:ReturnResult;
+returnResult:ReturnResult=new ReturnResult();
 
   constructor(private route:ActivatedRoute,
     private productService:ProductService,

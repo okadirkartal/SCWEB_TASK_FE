@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule, MatButtonModule,MatCheckboxModule} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ErrorMessageComponent } from './error-message/error-message.component';
 
 @NgModule({
   exports: [
@@ -28,6 +29,7 @@ export class MaterialModule {}
 @NgModule({
   declarations: [
     AppComponent,
+    ErrorMessageComponent,
     ProductFormComponent,
     ProductListComponent
   ],
