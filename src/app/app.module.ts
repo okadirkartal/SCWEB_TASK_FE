@@ -12,7 +12,6 @@ import {MatCardModule, MatButtonModule,MatCheckboxModule} from '@angular/materia
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
   exports: [
       

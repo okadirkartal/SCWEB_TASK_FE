@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import  { ProductService} from '../Services/ProductService'; 
 import { FormGroup, FormBuilder, FormControl, AbstractControl } from '@angular/forms';
 import { of } from 'rxjs';
 import { ProductAddViewModel } from '../models/ProductAddViewModel';
+import { ReturnResult } from '../models/ReturnResult';
 
 @Component({
   selector: 'app-product-form',
@@ -17,6 +18,8 @@ export class ProductFormComponent implements OnInit {
 productForm:FormGroup;
 unitTypes=[];
 selectedUnitType:number=1;
+@Input()
+returnResult:ReturnResult;
 
   constructor(private route:ActivatedRoute,
     private productService:ProductService,
@@ -43,8 +46,6 @@ return [
   }
 
   onSubmit(){
-   
-  let result;
   let model =new ProductAddViewModel();
   model.sku=this.productForm.controls.sku.value;
   model.name=this.productForm.controls.name.value;
@@ -70,18 +71,21 @@ return [
         model.unitValue=this.productForm.controls.dHeight.value+"x"+ this.productForm.controls.dWidth.value+"x"+ this.productForm.controls.dLength.value;
     }
 
-        console.log(model);  
-     
+       // console.log(model);  
+
      this.productService.addProduct(model)
     .subscribe(
       result=> {
-        result=result;
+        this.returnResult=result; 
+        if(this.returnResult.result==1) {
+          alert("Product added succssfully");
+          this.router.navigate(["../product/list"]);
+        } 
       }); 
-      console.log(result);
-      if(result==true) {
-        alert("Product added succssfully");
-        this.router.navigate(["../product/list"]);
-      }
+    
+      
+    
+       
   }
 
   setFormControlToNull(...params:AbstractControl[]) {

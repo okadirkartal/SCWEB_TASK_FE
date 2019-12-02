@@ -8,7 +8,9 @@
   </div>
   <hr />
 </div>
-
+<div id="divMessage" *ngIf="returnResult?.message?.length>=0">
+  <span *ngFor="let item of returnResult.message" [(ngModel)]="item">{{item}}<br /></span>
+</div>
 <mat-card class="example-card">
   <mat-card-content>
 

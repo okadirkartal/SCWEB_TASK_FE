@@ -4,6 +4,7 @@ import { throwError,Observable, of} from 'rxjs';
 import { catchError,tap} from 'rxjs/operators';
 import { ProductListViewModel} from '../models/ProductListViewModel';  
 import { ProductAddViewModel } from '../models/ProductAddViewModel';
+import { ReturnResult } from '../models/ReturnResult';
 
 
 @Injectable({
@@ -22,8 +23,8 @@ export class ProductService {
         );
       }
 
-    addProduct(model:ProductAddViewModel):Observable<boolean>{
-        return this.http.post<boolean>(this.serviceUrl+'addProduct.php',JSON.stringify(model))
+    addProduct(model:ProductAddViewModel):Observable<ReturnResult>{
+        return this.http.post<ReturnResult>(this.serviceUrl+'addProduct.php',JSON.stringify(model))
         .pipe(tap(data=>console.log('All: '+JSON.stringify(data))),
         catchError(this.handleError)
         );
