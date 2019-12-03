@@ -1,4 +1,4 @@
-export class ReturnResult{
-    result:number;
-    message:string[]=[];
+export class ReturnResult {
+    result: number;
+    message: string[]=[];
 }

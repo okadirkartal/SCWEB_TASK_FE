@@ -1,22 +1,24 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
 
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HttpClientModule} from '@angular/common/http';
-import { ProductFormComponent } from './product-form/product-form.component';
-import { ProductListComponent } from './product-list/product-list.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatCardModule, MatButtonModule,MatCheckboxModule} from '@angular/material';
-import {FlexLayoutModule} from '@angular/flex-layout';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ErrorMessageComponent } from './error-message/error-message.component';
-import { ProductsComponent } from './products/products.component';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { HttpClientModule } from "@angular/common/http";
+import { ProductFormComponent } from "./product-form/product-form.component";
+import { ProductListComponent } from "./product-list/product-list.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {
+  MatCardModule,
+  MatButtonModule,
+  MatCheckboxModule
+} from "@angular/material";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ErrorMessageComponent } from "./error-message/error-message.component";
+import { ProductsComponent } from "./products/products.component";
 
 @NgModule({
   exports: [
-      
     // Material
     MatButtonModule,
     MatCardModule,
@@ -24,7 +26,6 @@ import { ProductsComponent } from './products/products.component';
     FlexLayoutModule
   ]
 })
-
 export class MaterialModule {}
 
 @NgModule({
@@ -47,4 +48,4 @@ export class MaterialModule {}
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
