@@ -1,5 +1,10 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpParams,
+  HttpHeaders
+} from "@angular/common/http";
 import { throwError, Observable } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
 import { ProductListViewModel } from "../models/ProductListViewModel";
@@ -16,7 +21,9 @@ export class ProductService {
 
   getProducts(): Observable<ProductListViewModel[]> {
     return this.http
-      .get<ProductListViewModel[]>(this.serviceUrl + "getProducts.php")
+      .get<ProductListViewModel[]>(
+        this.serviceUrl + "getProducts.php?v=" + Math.random()
+      )
       .pipe(
         tap(data => console.log("All: " + JSON.stringify(data))),
         catchError(this.handleError)
@@ -35,9 +42,10 @@ export class ProductService {
       );
   }
 
-  deleteSelectedProducts(model: string): Observable<boolean> {
+  deleteSelectedProducts(model: string):Observable<boolean> {
+      
     return this.http
-      .post<boolean>(this.serviceUrl + "deleteSelectedProducts.php", model)
+      .delete<boolean>(this.serviceUrl + "deleteSelectedProducts.php?id="+model)
       .pipe(
         tap(data => console.log("All: " + JSON.stringify(data))),
         catchError(this.handleError)

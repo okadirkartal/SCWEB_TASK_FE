@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 })
 export class ProductListComponent implements OnInit {
   errorMessage: string;
-  products: ProductListViewModel[] = [];
+  products: ProductListViewModel[] = null;
   result: boolean;
 
   constructor(private productService: ProductService, private router: Router) {}
@@ -26,6 +26,7 @@ export class ProductListComponent implements OnInit {
       },
       error => (this.errorMessage = <any>error)
     );
+    console.log(this.products);
   }
 
   getDeletableRecords() {
@@ -52,16 +53,25 @@ export class ProductListComponent implements OnInit {
 
     if (deletableRecords == null) return;
 
-    console.log(deletableRecords);
+     console.log(`deletable records ${deletableRecords}`);
 
-    this.productService.deleteSelectedProducts(deletableRecords).subscribe(
-      result => {
-        this.result = result;
-      },
-      error => (this.errorMessage = <any>error)
-    );
-
-    this.getProducts();
+   let result = this.productService.deleteSelectedProducts(deletableRecords).subscribe(
+    result => {
+      this.result = result;
+    },
+    error => (this.errorMessage = <any>error)
+  );
+   
+   console.log(`result is ${result}`);
+    let selectedIds=deletableRecords.split(',');
+    
+    for(let i=0;i<selectedIds.length;i++){
+      for(let j=0;j<this.products.length;j++) {
+        if(selectedIds[i]==this.products[j].id.toString()) { 
+            this.products= this.products.filter(x=>x.id != parseInt(selectedIds[i]));
+        }
+      }
+    } 
   }
 
   gotoProductForm() {

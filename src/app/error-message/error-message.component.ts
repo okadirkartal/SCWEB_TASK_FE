@@ -29,7 +29,7 @@ export class ErrorMessageComponent implements OnInit {
     return this.messageList;
   }
 
-  @Output() messageChange: EventEmitter = new EventEmitter();
+  @Output() messageChange = new EventEmitter();
   set messages(val) {
     this.messageList = val;
     this.messageChange.emit(this.messageList[0]);
