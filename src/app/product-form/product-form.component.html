@@ -1,9 +1,9 @@
-<div style="width: 80%;">
+<div id="divHeader">
   <div style="display: flex; width: 100%;">
-    <div style="margin-left: 10px;width:80%;">Product Add</div>
+    <div id="divTitle">Product Add</div>
     <div style="margin-right: 0px;width:20%;">
-      <span></span>&nbsp;&nbsp;&nbsp;<button mat-button (click)="onSubmit()">Save</button>
-      &nbsp;&nbsp;&nbsp;<button mat-button (click)="gotoProductList()">Product List</button>
+      <span></span>&nbsp;&nbsp;&nbsp;<button mat-stroked-button (click)="onSubmit()">Save</button>
+      &nbsp;&nbsp;&nbsp;<button mat-stroked-button (click)="gotoProductList()">Product List</button>
     </div>
   </div>
   <hr />
@@ -18,21 +18,21 @@
       <table class="formTable">
         <tr>
           <td> <label for="sku">SKU</label></td>
-          <td><input type="text" class="form-control mb-4" id="sku" formControlName="sku" maxlength="10" required />
+          <td><input type="text" class="input--style-4" id="sku" formControlName="sku" maxlength="10" required />
           </td>
         </tr>
         <tr>
           <td> <label for="name">Name</label></td>
-          <td> <input type="text" class="form-control" id="name" formControlName="name" maxlength="20" required /> </td>
+          <td> <input type="text" class="input--style-4" id="name" formControlName="name" maxlength="20" required /> </td>
         </tr>
         <tr>
           <td> <label for="price">Price</label></td>
-          <td> <input type="number" class="form-control" id="price" formControlName="price" maxlength="10" required />
+          <td> <input type="number" class="input--style-4" id="price" formControlName="price" maxlength="10" required />
           </td>
         </tr>
         <tr>
           <td> <label for="unitTypes">Type switcher</label></td>
-          <td> <select formControlName="unitTypes" id="unitTypes" [(ngModel)]="selectedUnitType">
+          <td> <select formControlName="unitTypes" id="unitTypes" class="input--style-4" [(ngModel)]="selectedUnitType">
               <option *ngFor="let item of unitTypes; let i = index" [value]="unitTypes[i].id">
                 {{unitTypes[i].value}}
               </option>
@@ -47,7 +47,7 @@
         </tr>
         <tr id="trSize" *ngIf="selectedUnitType == 2">
           <td><label for="size">Size</label></td>
-          <td><input type="number" class="form-control" id="size" formControlName="size" maxlength="10" />&nbsp;mb</td>
+          <td><input type="number" class="input--style-4" id="size" formControlName="size" maxlength="10" />&nbsp;mb</td>
         </tr>
         <tr id="divWeightTitle" *ngIf="selectedUnitType == 1">
           <td colspan="2"> <span> Please provide weight in kg format</span>
@@ -57,7 +57,7 @@
 
         <tr id="trvWeight" *ngIf="selectedUnitType == 1">
           <td> <label for="weight">Weight</label></td>
-          <td> <input type="number" class="form-control" id="weight" formControlName="weight" maxlength="10" />&nbsp;kg
+          <td> <input type="number" class="input--style-4" id="weight" formControlName="weight" maxlength="10" />&nbsp;kg
           </td>
         </tr>
 
@@ -69,17 +69,17 @@
 
         <tr id="trDimension" *ngIf="selectedUnitType == 3">
           <td><label for="dHeight">Height</label></td>
-          <td><input type="number" class="form-control" id="dHeight" formControlName="dHeight" maxlength="10"
+          <td><input type="number" class="input--style-4" id="dHeight" formControlName="dHeight" maxlength="10"
               pattern="[0-9]*" /></td>
         </tr>
         <tr id="trDimension2" *ngIf="selectedUnitType == 3">
           <td><label for="dWidth">Width</label></td>
-          <td> <input type="number" class="form-control" id="dWidth" formControlName="dWidth" maxlength="10"
+          <td> <input type="number" class="input--style-4" id="dWidth" formControlName="dWidth" maxlength="10"
               pattern="[0-9]*" /></td>
         </tr>
         <tr id="trDimension3" *ngIf="selectedUnitType == 3">
           <td> <label for="dLength">Length</label></td>
-          <td> <input type="number" class="form-control" id="dLength" formControlName="dLength" maxlength="10"
+          <td> <input type="number" class="input--style-4" id="dLength" formControlName="dLength" maxlength="10"
               pattern="[0-9]*" /></td>
         </tr>
       </table>
