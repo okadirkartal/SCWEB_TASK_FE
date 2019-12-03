@@ -62,17 +62,19 @@ export class ProductListComponent implements OnInit {
     error => (this.errorMessage = <any>error)
   );
    
-   console.log(`result is ${result}`);
-    let selectedIds=deletableRecords.split(',');
-    
-    for(let i=0;i<selectedIds.length;i++){
-      for(let j=0;j<this.products.length;j++) {
-        if(selectedIds[i]==this.products[j].id.toString()) { 
-            this.products= this.products.filter(x=>x.id != parseInt(selectedIds[i]));
-        }
-      }
-    } 
+   console.log(`result is ${result}`); 
+   this.spliceSelectedItemsFromList(deletableRecords.split(','))
   }
+
+ spliceSelectedItemsFromList(selectedIds:string[]){
+  for(let i=0;i<selectedIds.length;i++){
+    for(let j=0;j<this.products.length;j++) {
+      if(selectedIds[i]==this.products[j].id.toString()) { 
+          this.products= this.products.filter(x=>x.id != parseInt(selectedIds[i]));
+      }
+    }
+  } 
+ }
 
   gotoProductForm() {
     this.router.navigate(["../product/add"]);
