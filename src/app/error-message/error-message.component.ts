@@ -4,19 +4,26 @@ import { EventEmitter } from "events";
 @Component({
   selector: "app-error-message",
   template: `
-    <div id="divMessage" *ngIf="messages?.length >= 0">
-      <span *ngFor="let item of messages">{{ item }}<br /></span>
+    <div *ngIf="messages?.length >= 0">
+      <ul>
+        <li *ngFor="let item of messages">
+          <span class="msg-span">{{ item }}</span>
+        </li>
+      </ul>
     </div>
   `,
   styles: [
     `
-      #divMessage {
-        color: red !important;
-        font-weight: bold !important;
+      ul {
+        list-style-type: none;
       }
-      #divMessage span {
-        color: red !important;
-        font-weight: bold !important;
+      .msg-span {
+        left: 10px;
+        color: red;
+        display: inline-block;
+        font-weight: bold;
+        line-height: 15px;
+        margin: 10px 0 0;
       }
     `
   ]
